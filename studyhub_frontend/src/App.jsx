@@ -2,12 +2,14 @@ import { Route, Routes } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import PrivateRoute from './components/PrivateRoute'
 import { useAuth } from './context/AuthContext'
-import CommunityPage from './pages/CommunityPage'
 import Communities from './pages/Communities'
+import CommunityPage from './pages/CommunityPage'
 import CreatePost from './pages/CreatePost'
+import ForgetPassword from './pages/ForgetPassword'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Profile from './pages/Profile'
+import ResetPassword from './pages/ResetPassword'
 import Signup from './pages/Signup'
 
 export default function App() {
@@ -24,6 +26,9 @@ export default function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/forgot-password" element={<ForgetPassword />} />
+          <Route path="/reset-password/:uidb64/:token" element={<ResetPassword />} />
+
           <Route
             path="/"
             element={
@@ -56,14 +61,7 @@ export default function App() {
               </PrivateRoute>
             }
           />
-          <Route
-            path="/profile/:id"
-            element={
-              <PrivateRoute>
-                <Profile />
-              </PrivateRoute>
-            }
-          />
+          <Route path="/profile/:id" element={<PrivateRoute><Profile /></PrivateRoute>}/>
         </Routes>
       </main>
     </>

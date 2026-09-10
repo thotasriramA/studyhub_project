@@ -133,7 +133,7 @@ export default function PostCard({ post }) {
 
       {/* Like count & comment count */}
       <div className="px-4 pt-2 text-sm font-semibold text-gray-900">
-        {likeCount} {likeCount === 1 ? 'like' : 'likes'}
+        {likeCount} {likeCount >= 1 ? 'usefull' : 'like'}
       </div>
       {!showComments && comments.length > 0 && (
         <button

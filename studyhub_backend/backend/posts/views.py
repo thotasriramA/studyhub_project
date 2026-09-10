@@ -118,3 +118,16 @@ class CommentDeleteView(generics.DestroyAPIView):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
     permission_classes = [permissions.IsAuthenticated, IsAuthorOrReadOnly]
+
+class UserPostsView(generics.ListAPIView):
+    """GET /api/posts/user/<user_id>/  -> all posts created by a specific user"""
+    serializer_class = PostSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+    def get_queryset(self):
+        return Post.objects.filter(
+            author_id=self.kwargs['user_id']
+        ).select_related('author', 'community')
+
+    def get_serializer_context(self):
+        return {'request': self.request}

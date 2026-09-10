@@ -14,7 +14,6 @@ export default function Home() {
     setPosts(data)
     setLoading(false)
   }
-
   useEffect(() => {
     fetchPosts()
   }, [])
